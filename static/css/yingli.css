@@ -1,0 +1,76 @@
+/*
+
+映利管理后台自定义格式
+全部的class 名 以yl-开头
+
+*/
+
+.yl-input-text {
+  width: 200px;
+  margin-right: 6px;
+  height: 20px;
+}
+
+.yl-input-button {
+  text-decoration: none;
+  line-height: 19px;
+  border: 1px solid #67A3D3;
+  height: 25px;
+  position: relative;
+  border-radius: 3px;
+  display: inline-block;
+  background: url('../img/button.jpg') top left repeat-x !important;
+  margin-right: 6px;
+
+}
+
+
+
+.yl-float-right {
+  display: inline-block;
+  float: right;
+}
+
+.yl-container {
+
+}
+
+/*在float的上级菜单中加yl-clearfix*/
+.yl-clearfix {
+  /*overflow: auto;
+  zoom: 1;*/
+}
+.yl-float-left {
+  display: inline-block;
+  float: left;
+}
+
+.yl-select-option {
+  height: 30px;
+  width: 180px;
+  padding: 4px 0;
+  margin-right: 8px;
+  vertical-align: top;
+}
+
+.yl-select-option option {
+  font-size: 12px;
+}
+.yl-input-date {
+  height: 20px;
+  width: 120px;
+  margin-top: 4px;
+  margin-right: 8px;
+  vertical-align: top;
+}
+
+.yl-pagination {
+  display: inline-block;
+  float: left;
+  margin-top: 20px;
+  margin-bottom: 12px;
+}
+
+.yl-block {
+  display: block;
+}
