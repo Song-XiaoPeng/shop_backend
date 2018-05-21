@@ -1,91 +1,73 @@
 <template>
-  <el-form :model="form"
-           label-width="180px"
-           @submit.prevent="onSubmit"
-           :rules="formRule"
-           ref="employeForm"
-           style="margin-top:15px;width:60%;min-width:600px; padding-top: 15px">
-
-    <el-form-item label="角色名称" required prop="role_name">
-      <el-input v-model.string="form.role_name"></el-input>
-    </el-form-item>
-
-    
-    <el-form-item  label="权限列表" prop="auth_permission">
-      <el-tree
-        :data="backendApiAuthList"
-        show-checkbox
-        node-key="id"
-        ref="tree1"
-        :props="defaultProps1">
-      </el-tree>
-    </el-form-item>
-
-    <el-form-item>
-      <el-button type="primary"
-                 @click.native.prevent="onSubmit">
-        修改
-      </el-button>
-      <el-button @click.native.prevent="$router.push({path: '/roles/RoleList'});">返回</el-button>
-    </el-form-item>
-  </el-form>
+  <el-tabs tab-position="" style="height: 200px;" v-model="activeName"  @tab-click="handleClick">
+    <el-tab-pane label="添加根菜单" name="0">
+      <root-menu :button="buttonName" :permission="permission" :load="loading"></root-menu>
+    </el-tab-pane>
+    <el-tab-pane label="添加子菜单" name="1">
+      <sub-menu :button="buttonName" :permission="permission" :load="loading"></sub-menu>
+    </el-tab-pane>
+    <el-tab-pane label="添加权限" name="2">
+      <page-button :button="buttonName" :permission="permission" :load="loading"></page-button>
+    </el-tab-pane>
+  </el-tabs>
 </template>
-
 <script>
-  import { getRoleDetail,addRolePermission,getBackendApiAuthList } from '../../api/roles'
+  import {getPermissionDetail} from '@/api/roles.js'
+  import rootMenu from './menu/rootMenu'
+  import subMenu from './menu/subMenu'
+  import pageButton from './menu/pageButton'
 
   export default {
+    components: {
+      rootMenu,subMenu,pageButton
+    },
     data() {
       return {
-        defaultExpandedKeys: [],
-        defaultCheckedKeys: [],
-        defaultProps1: {
-          children: 'children',
-          label: 'label'
-        },
-        backendApiAuthList: [],
-        refresh: true,
         loading: false,
-        form: {
+        type: '',
+        buttonName:'新增',
+        activeName: '0',
+        permission1: {
           id: '',
-          role_name: '',
-          permissions: [],
+          name: '',
+          auth: '',
+          path: '',
+          icon_class: '',
+          parent_id:''
         },
-        formRule: {
-          role_name: [
-            { required: true, message: '请输入角色名称', trigger: 'blur'  }
-          ]
-        }
-      };
-    },
-    beforeRouteLeave(to, from, next) {
-      to.meta.refresh = this.refresh;
-      next();
+        permission: {},
+        permission2: null
+      }
     },
     methods: {
-      onSubmit() {
-        this.loading = true;
-        this.$refs.employeForm.validate((valid) => {
-          if (valid) {
-            this.form.permissions = this.$refs.tree.getCheckedKeys()
-            addRolePermission(this.form).then((res) => {
-              this.loading = false;
-              this.ezNotifyAxiosThen(res);
-              if (res.status > 0) {
-                this.$router.push({path: '/roles/RoleList'});
-              }
-            }).catch(error => {
-              this.ezNotifyAxiosCatch(error);
-            });
-          }
-        });
+      handleClick(tab, event) {
+        if(this.type != tab.name){
+          this.permission = this.permission1
+          return
+        }
+        this.getPermissionDetail()
       },
+      getPermissionDetail() {
+        let id = this.$route.params.id
+        if(id){
+          if(this.permission2){
+            this.permission = this.permission2
+            return
+          }
+          this.buttonName = "修改"
+          this.loading = true
+          getPermissionDetail({id}).then((res) => {
+            this.loading = false
+            this.permission = res.data
+            this.permission2 = res.data
+          })
+        }
+      }
     },
     created() {
-      getBackendApiAuthList().then((res) => {
-        let jsonData1 = res.data
-        this.backendApiAuthList = jsonData1
-      });
+      this.type = this.$route.query.type ? this.$route.query.type + '' : '0'
+      this.activeName = this.type 
+      this.getPermissionDetail()      
     }
-  };
+  }
 </script>

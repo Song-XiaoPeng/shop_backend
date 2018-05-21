@@ -63,6 +63,7 @@ import payEdit from "../components/pay/payTipsEdit.vue";
 import roleCreate from "../components/role/RoleCreate.vue";
 import RoleList from "../components/role/RoleList.vue";
 import roleAuthEdit from "../components/role/RoleAuthEdit.vue";
+import permissionList from "../components/role/permissionList.vue";
 
 //系统设置
 import SettingCreate from "../components/system/setting/SettingCreate.vue";
@@ -80,27 +81,10 @@ export default new Router({
       component: Home,
       name: '代理管理',
       children: [
-        {path: '/agent/applyCashOut', component: AgentCashTabPane, name: '代理商提现申请'},
         {path: '/agent', component: AgentTable, name: '代理列表', meta: {keepAlive: true}},
-        {path: '/agent/children', component: AgentChildrenTable, name: '下级代理列表', meta: {keepAlive: true}},
-        {path: '/agent/serviceFee', component: AgentServiceFeeList, name: '服务费明细表', meta: {keepAlive: true}},
-        {path: '/agent/interestList', component: AgentInterestList, name: '配资递延费', meta: {keepAlive: true}},
-        {path: '/agent/cash', component: AgentCashTable, name: '代理提现', meta: {keepAlive: true}},
-        {path: '/agent/cashBankEdit', component: AgentBankEdit, name: '代理提现银行卡'},
-        {path: '/agent/cash/audit/:id', component: AgentCashAudit, name: '代理提现审核'},
-        {path: 'agent/create', component: FormAgentCreate, name: '代理商创建'},
-        {path: 'agent/update/:id', component: FormAgentUpdate, name: '代理商修改'},
-        {path: 'agent/recommend/code', component: PromoteQR, name: '推广二维码', meta: {keepAlive: true}}
-      ]
-    },
-    {
-      path: '/employee',
-      component: Home,
-      name: '员工管理',
-      children: [
-        {path: '/employee', component: EmployeeList, name: '员工列表', meta: {keepAlive: true}},
-        {path: 'create', component: EmployeeCreate, name: '员工创建'},
-        {path: 'update/:id', component: EmployeeUpdate, name: '员工修改'}
+        {path: '/agent/cash', component: AgentCashTable, name: '提现记录', meta: {keepAlive: true}},
+        {path: 'agent/recommend/code', component: PromoteQR, name: '我的推广', meta: {keepAlive: true}},
+        {path: '/agent/children', component: AgentChildrenTable, name: '我的收益', meta: {keepAlive: true}},
       ]
     },
     {
@@ -180,7 +164,9 @@ export default new Router({
         {path: '/roles/RoleList', component: RoleList, name: '角色列表', meta: {}},
         {path: '/roles/roleCreate', component: roleCreate, name: '新增角色', meta: {}},
         {path: '/roles/roleCreate/:id', component: roleCreate, name: '修改角色', meta: {}},
-        {path: '/roles/roleAuthEdit/:id', component: roleAuthEdit, name: '设置接口权限', meta: {}},
+        {path: '/roles/roleAuthEdit', component: roleAuthEdit, name: '新增权限', meta: {}},
+        {path: '/roles/roleAuthEdit/:id', component: roleAuthEdit, name: '修改权限', meta: {}},
+        {path: '/roles/permissionList', component: permissionList, name: '权限列表', meta: {keepAlive: true}},
       ]
     },
     {
@@ -192,6 +178,16 @@ export default new Router({
         {path: 'settingCreate', component: SettingCreate, name: '系统设置', meta: {}},
         {path: 'settingCreate/:id', component: SettingCreate, name: '修改系统设置', meta: {}},
       ]
+    },
+    {
+        path: '/employee',
+        component: Home,
+        name: '员工管理',
+        children: [
+            {path: '/employee', component: EmployeeList, name: '员工列表', meta: {keepAlive: true}},
+            {path: 'create', component: EmployeeCreate, name: '员工创建'},
+            {path: 'update/:id', component: EmployeeUpdate, name: '员工修改'}
+        ]
     }
   ]
 })

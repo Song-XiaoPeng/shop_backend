@@ -8,7 +8,7 @@ import App from "./App";
 import router from "./router";
 
 import ElementUI from "element-ui";
-import "element-ui/lib/theme-default/index.css";
+import 'element-ui/lib/theme-chalk/index.css'
 import VueClipboard from "vue-clipboard2";
 import {fetchToken, getStorageUserInfo} from "./common/tools";
 
@@ -36,19 +36,11 @@ Vue.config.productionTip = false;
 
 //事件监听bus
 Vue.prototype.$bus = new Vue();
-/*Vue.prototype.$bus.$on('refresh_user_info', (data) => {
- console.log('监听到事件');
- });*/
 
 router.beforeEach((to, from, next) => {
   Vue.prototype.userInfo = getStorageUserInfo();
   check_role(to);
-  //console.log(Vue.prototype.domain)
-  /*if (Vue.prototype.domain == 'zhaoyinzx.com') {
-   document.title = '兆盈资本|' + to.name;
-   } else {
-   document.title = '开天时代|' + to.name;
-   }*/
+ 
   if (Vue.prototype.userInfo.agent_info) {
     document.title = Vue.prototype.userInfo.agent_info.platform_name ? Vue.prototype.userInfo.agent_info.platform_name + '|' + to.name : '';
   } else {

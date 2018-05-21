@@ -1,9 +1,9 @@
 <template>
     <el-form id="test"
              @submit.prevent="onSubmit"
-             label-width="180px"s
+             label-width="180px"
              style="margin-top:15px;width:60%;min-width:600px; padding-top: 15px" method="post" :action="updateUrl">
-        <el-form-item v-for="(val, key, index) in Paylist" :key="key" :label="val">
+        <el-form-item v-for="(val, key, index) in Paylist" :label="val" :key="key">
             <el-input :name="key" :value="PayTips[key] != null ? PayTips[key] : ''"></el-input>
         </el-form-item>
         <el-form-item>

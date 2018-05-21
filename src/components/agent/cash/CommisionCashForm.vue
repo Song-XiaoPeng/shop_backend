@@ -44,7 +44,7 @@
     import {agentCommisionCashInfo, agentCashOutUpdate} from '../../../api/agentCashOut';
     let dt = new Date();
     export default {
-        props:['hasBankInfo'],
+        props: ['hasBankInfo'],
         data() {
             let cashOutAmoutCheck = (rule, value, callback) => {
                 if (!/^\d+(\.\d{1,2})?$/.test(value)) {
@@ -58,7 +58,7 @@
                 }
             };
             return {
-                form: {cash_time_not_allowed:true,already_cash:true},
+                form: {cash_time_not_allowed: true, already_cash: true},
                 loading1: false,
                 formRule: {
                     cashOutAmount: [
@@ -100,11 +100,17 @@
                         this.loading1 = true;
                         agentCashOutUpdate(params).then(res => {
                             this.loading1 = false;
-                            if (res.status === 0) return this.ezNotifyAxiosThen(res);
+                            if (res.status === 0) {
+                                this.ezNotifyAxiosThen(res);
+                                setTimeout(function () {
+                                    location.reload(true)
+                                }, 2000);
+                                return false;
+                            }
                             if (res.status > 0) {
                                 this.$router.push({name: '代理提现'});
                             }
-                        }).catch(error => this.ezNotifyAxiosCatch(error))
+                        }).catch(error => console.log(error))
                     }
                 });
             }

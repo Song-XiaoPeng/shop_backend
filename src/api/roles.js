@@ -20,3 +20,19 @@ export const addRolePermission = params => {
 export const getBackendApiAuthList = params => {
   return initAxios().post(`/v1/getBackendApiAuthList`, params).then(res => res.data);
 }
+
+export const setPermission = (params) => {
+  return initAxios().post(`/v1/setPermission`, params).then(res => res.data);
+}
+
+export const getParentList = (params) => {
+  return initAxios().post(`/v1/getParentList`, params).then(res => res.data);
+}
+
+export const getPermissionList = (params) => {
+  return initAxios().post(`/v1/getPermissionList`, params).then(res => res.data);
+}
+
+export const getPermissionDetail = (params) => {
+  return initAxios().post(`/v1/getPermissionDetail`, params).then(res => res.data);
+}

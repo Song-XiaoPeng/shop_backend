@@ -29,43 +29,43 @@
                 <el-table-column label="ID" prop="id"></el-table-column>
 
               <el-table-column label="文章分类">
-                <template scope="scope">
+                <template slot-scope="scope">
                   <span v-text="scope.row.replaced_type"></span>
                 </template>
               </el-table-column>
 
                 <el-table-column label="标题">
-                    <template scope="scope">
+                    <template slot-scope="scope">
                         <span v-text="scope.row.title"></span>
                     </template>
                 </el-table-column>
 
                 <el-table-column label="排序">
-                    <template scope="scope">
+                    <template slot-scope="scope">
                         <span v-text="scope.row.sort"></span>
                     </template>
                 </el-table-column>
 
               <!--<el-table-column label="文章分类">
-                  <template scope="scope">
+                  <template slot-scope="scope">
                       <span v-text="scope.row.type_name"></span>
                   </template>
               </el-table-column>-->
 
                 <el-table-column label="来源">
-                    <template scope="scope">
+                    <template slot-scope="scope">
                         <span v-text="scope.row.agent_id == userInfo.agent_id ? '本站' : '代理'+scope.row.agent_id"></span>
                     </template>
                 </el-table-column>
 
                 <el-table-column prop="created_time" label="操作时间">
-                    <template scope="scope">
+                    <template slot-scope="scope">
                         <span v-text="scope.row.updated_time"></span>
                     </template>
                 </el-table-column>
 
                 <el-table-column label="操作" min-width="150px">
-                    <template scope="scope">
+                    <template slot-scope="scope">
                         <el-button size="mini" @click="handleEdit(scope.row.id)" title="代理修改"><i class="fa fa-pencil"></i></el-button>
                         <el-button size="small" @click="destroy(scope.row.id,scope.$index)" title="删除" icon="delete"></el-button>
                     </template>

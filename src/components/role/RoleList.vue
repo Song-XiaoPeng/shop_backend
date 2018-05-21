@@ -1,12 +1,13 @@
 <template>
     <div class="yl-clearfix">
         <div class="searchgrid">
-            <!-- <input value=" 新增 " type="button" class="yl-input-button yl-float-left" @click="$router.push({name: '新增角色'})">
-            
+            <input value="添加权限" type="button" class="yl-input-button yl-float-left" @click="$router.push({name: '新增权限'})">
+            <input value="添加角色" type="button" class="yl-input-button yl-float-left" @click="$router.push({name: '新增角色'})">
+
             <div class="yl-float-right">
                 <input class="yl-input-text" v-model="filters.keyword" type="text" placeholder="角色名称">
                 <input value=" 查询 " class="yl-input-button" type="button" @click="">
-            </div> -->
+            </div>
         </div>
         <div class="tab-content default-tab yl-clearfix" style="display: block;">
             <el-table :data="pagination.data"

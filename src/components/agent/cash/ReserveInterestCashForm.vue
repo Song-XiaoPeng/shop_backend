@@ -103,7 +103,13 @@
                         this.loading3 = true;
                         agentCashOutUpdate(params).then(res => {
                             this.loading3 = false;
-                            if (res.status === 0) return this.ezNotifyAxiosThen(res);
+                            if (res.status === 0) {
+                                this.ezNotifyAxiosThen(res);
+                                setTimeout(function () {
+                                    location.reload(true)
+                                }, 2000);
+                                return false;
+                            }
                             if (res.status > 0) {
                                 this.$router.push({name: '代理提现'});
                             }

@@ -89,8 +89,8 @@
               </router-view>
               <el-row type="flex" class="ip-info" justify="space-around" v-if="$route.path=='/'">
                 <el-col :span="6" style="text-align: left">本次登录IP：{{userInfo.my_ip}}</el-col>
-                <el-col :span="6" style="text-align: center">上次登录IP：{{userInfo.last_ip}}</el-col>
-                <el-col :span="6" style="text-align: right">上次登录时间：{{userInfo.updated_time}}</el-col>
+                <!--<el-col :span="6" style="text-align: center">上次登录IP：{{userInfo.last_ip}}</el-col>
+                <el-col :span="6" style="text-align: right">上次登录时间：{{userInfo.updated_time}}</el-col>-->
               </el-row>
             </div>
           </div>

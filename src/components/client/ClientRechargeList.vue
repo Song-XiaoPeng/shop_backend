@@ -90,10 +90,13 @@
             <el-button size="mini" @click="segueToClientRechargeAudit(scope.row)" v-if="scope.row.new_status == '处理中'&&show_button_list.indexOf('客户充值审核')!=-1" title="账户审核"><i class="fa fa-pencil"></i></el-button>
           </template>
           <!--<el-button size="mini" @click="queryAccounts(scope.row.type,scope.row.order_number)" title="查询到账"><i class="fa fa-search" v-if="role=='SystemAdmin' || role=='SystemStaff'"></i></el-button>-->
-          <template v-if="role=='SystemAdmin' || role=='SystemStaff'">
+          <template v-if="role=='SystemAdmin' || role=='SystemStaff' || role == 'SystemPayStaff'">
             <template v-if="show_button_list.indexOf('查询充值到账')!=-1">
               <el-button size="mini" @click="queryAccounts(scope.row.type,scope.row.order_number)" title="查询到账"><i class="fa fa-search" v-if=""></i></el-button>
             </template>
+          </template>
+          <template v-if="(role == 'SystemAdmin' || role == 'SystemPayStaff') && scope.row.status == 0">
+              <el-button size="mini" @click="orderManual(scope.row)" title="手动到账"><i class="fa fa-credit-card"></i></el-button>
           </template>
         </template>
       </el-table-column>
@@ -112,14 +115,27 @@
       </el-pagination>
     </div>
 
+    <el-dialog
+            title="确认手动到账？"
+            :visible.sync="dialogVisible"
+            width="30%">
+      <span>订单详细</span>
+      <p>用户信息：{{row.client['cust_info']}}</p>
+      <p>订单号：{{ManualOrderNum}}</p>
+      <p>支付类型：{{row.type}}</p>
+      <p>发起时间：{{row.created_time}}</p>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="doManual()">确 定</el-button>
+      </span>
+    </el-dialog>
   </section>
-
 
 </template>
 
 <script>
   import {fetchClientRechargeList, queryUserAccount} from '../../api/client';
-  import {loadingOpen,loadingClose,errorMsg,successMsg, getStorageUserInfo} from '../../common/tools'
+  import {loadingOpen,loadingClose,errorMsg,successMsg, getStorageUserInfo, goToManualOrder} from '../../common/tools'
   import excel from '../common/excel';
   export default {
     components: {
@@ -173,13 +189,19 @@
             18: "环迅网银支付",
             19: "环迅快捷支付",
             20: "林丰云付网银支付",
-            22: "通联快捷支付"
+            22: "通联快捷支付",
+            27: "立客支付"
         },
         pagination: {},
         loading: false,
         pageIndex: 1,
         button_list: ['查询充值到账','客户充值审核'],
-        show_button_list: []
+        show_button_list: [],
+        row: {
+            client:[]
+        },
+        ManualOrderNum: "",
+        dialogVisible: false
       };
     },
     methods: {
@@ -267,7 +289,34 @@
             loadingClose();
             errorMsg("查询失败！请稍后再试！");
         })
-      }
+      },
+      //手动到账
+      orderManual(row) {
+          this.row = row
+          this.ManualOrderNum = row.order_number
+          this.dialogVisible = true
+      },
+        doManual() {
+          let _this = this
+          loadingOpen("执行中，请稍后")
+          goToManualOrder({orderNum: _this.ManualOrderNum})
+              .then(function (data) {
+                  if(data.status == 0){
+                      errorMsg(data.msg)
+                  }else {
+                      _this.dialogVisible = false
+                      _this.row={
+                          client: []
+                      }
+                      _this.getClientRecharges()
+                  }
+                  loadingClose()
+                  console.log(data)
+              }).catch(function (err) {
+                  loadingClose()
+                  console.log(err)
+          })
+        }
     },
     created() {
       this.getClientRecharges();
