@@ -1,3 +1,10 @@
+<style scoped>
+    .buttonOption {
+        width:22px;
+        height:22px;
+        padding:0;
+    }
+</style>
 <template>
     <div class="yl-clearfix">
         <el-row class="searchgrid">
@@ -32,7 +39,7 @@
             <el-table-column prop="real_name" label="真实姓名">
             </el-table-column>
             <el-table-column prop="cellphone" label="手机">
-                <template scope="scope">
+                <template slot-scope="scope">
                     <el-popover
                             ref="popover2"
                             placement="top-start"
@@ -55,7 +62,7 @@
             <el-table-column prop="direct_cust_id" label="推荐人ID">
             </el-table-column>
             <el-table-column label="代理ID">
-                <template scope="scope">
+                <template slot-scope="scope">
                     <el-popover
                             ref="popover1"
                             placement="top-start"
@@ -77,23 +84,23 @@
             <el-table-column prop="u_stock_financing_count" label="在配合约数">
             </el-table-column>
             <el-table-column label="操作" width="150" v-if="role_group=='System'">
-                <!--<template scope="scope">-->
+                <!--<template slot-scope="scope">-->
                     <!--<el-button v-if="role=='SystemAdmin'" size="mini" @click="segueToCleintEdit(scope.row)" icon="edit" title="客户修改"></el-button>-->
                     <!--<el-button v-if="role=='SystemAdmin'" size="mini" @click="segueToCleintSwap(scope.row)" title="修改客户归属关系"><i class="fa fa-exchange"></i></el-button>-->
                     <!--<el-button v-if="role=='SystemAdmin'" size="mini" @click="segueToCleintAccountAdjust(scope.row)" title="账户调整"><i class="fa fa-btc"></i></el-button>-->
                     <!--<el-button v-if="role_group=='System'" size="mini" @click="select_row = scope.row; dialog1Visible=true;" title="扮演用户,请在浏览器里面始终容许显示弹出窗口"><i class="fa fa-play-circle"></i></el-button>-->
                 <!--</template>-->
-                <template scope="scope">
+                <template slot-scope="scope">
                     <template v-if="role=='SystemAdmin'">
-                        <el-button v-if="show_button_list.indexOf('客户修改')!=-1" size="mini" @click="segueToCleintEdit(scope.row)" icon="edit"
+                        <el-button v-if="show_button_list.indexOf('客户修改')!=-1" class="buttonOption" size="mini" @click="segueToCleintEdit(scope.row)" icon="el-icon-edit"
                                    title="客户修改"></el-button>
-                        <el-button v-if="show_button_list.indexOf('客户变更归属')!=-1" size="mini" @click="segueToCleintSwap(scope.row)"
+                        <el-button v-if="show_button_list.indexOf('客户变更归属')!=-1" class="buttonOption"  size="mini" @click="segueToCleintSwap(scope.row)"
                                    title="修改客户归属关系"><i class="fa fa-exchange"></i></el-button>
-                        <el-button v-if="show_button_list.indexOf('调整客户余额')!=-1" size="mini" @click="segueToCleintAccountAdjust(scope.row)"
+                        <el-button v-if="show_button_list.indexOf('调整客户余额')!=-1" class="buttonOption"  size="mini" @click="segueToCleintAccountAdjust(scope.row)"
                                    title="账户调整"><i class="fa fa-btc"></i></el-button>
                     </template>
                     <template v-if="role_group=='System'">
-                        <el-button v-if="show_button_list.indexOf('扮演用户')!=-1" size="mini"
+                        <el-button v-if="show_button_list.indexOf('扮演用户')!=-1"  class="buttonOption" size="mini"
                                    @click="select_row = scope.row; dialog1Visible=true;" title="扮演用户,请在浏览器里面始终容许显示弹出窗口"><i
                                 class="fa fa-play-circle"></i></el-button>
                     </template>

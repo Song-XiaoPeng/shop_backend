@@ -12,7 +12,7 @@
       <el-table-column prop="buy_stampduty_rate" label="买入印花税比例" show-overflow-tooltip></el-table-column>
       <el-table-column prop="sell_stampduty_rate" label="卖出印花税比例" show-overflow-tooltip></el-table-column>
       <el-table-column prop="buy_transfer_rate" label="买入过户费比例" show-overflow-tooltip>
-        <template scope="scope">
+        <template slot-scope="scope">
           <el-popover trigger="hover" placement="top">
             <p>深市股票交易不收取过户费</p>
             <div slot="reference" class="name-wrapper">
@@ -22,7 +22,7 @@
         </template>
       </el-table-column>
       <el-table-column prop="sell_transfer_rate" label="卖出过户费比例" show-overflow-tooltip>
-        <template scope="scope">
+        <template slot-scope="scope">
           <el-popover trigger="hover" placement="top">
             <p>深市股票交易不收取过户费</p>
             <div slot="reference" class="name-wrapper">
@@ -39,7 +39,7 @@
       <el-table-column prop="sell_fee_rate" label="卖出规费比例" show-overflow-tooltip></el-table-column>
 
       <!--<el-table-column label="操作">
-          <template scope="scope">
+          <template slot-scope="scope">
               <el-button size="small" title="修改(暂不支持)" icon="edit"></el-button>
           </template>
       </el-table-column>-->

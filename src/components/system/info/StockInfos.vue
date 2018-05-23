@@ -56,7 +56,7 @@
       <el-table-column prop="remark" label="备注" show-overflow-tooltip></el-table-column>
 
       <el-table-column label="操作">
-        <template scope="scope">
+        <template slot-scope="scope">
           <router-link :to="{path:'/system/info/edit/'+scope.row.id}">
             <el-button size="small" title="修改" icon="edit"></el-button>
           </router-link>

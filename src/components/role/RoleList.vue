@@ -17,34 +17,18 @@
                 <el-table-column label="ID" prop="id"></el-table-column>
 
                <el-table-column label="角色名称">
-                    <template scope="scope">
+                    <template slot-scope="scope">
                         <span v-text="scope.row.role_name"></span>
                     </template>
                 </el-table-column>
 
                 <el-table-column label="操作" min-width="150px">
-                    <template scope="scope">
-                        <el-button size="mini" @click="editRole(scope.row.id)" title="修改角色"><i class="fa fa-pencil"></i></el-button>
-                        <!-- <el-button size="mini" @click="editAuth(scope.row.id)" title="api接口权限配置"><i class="fa fa-pencil"></i></el-button> -->
-                        <el-button size="small" @click="destroy(scope.row.id,scope.$index)" title="删除" icon="delete"></el-button>
+                    <template slot-scope="scope">
+                        <el-button size="mini" type="primary" @click="editRole(scope.row.id)" title="修改角色"><i class="fa fa-pencil"></i></el-button>
+                        <el-button size="mini" type="danger" @click="destroy(scope.row.id,scope.$index)" title="删除" icon="el-icon-delete"></el-button>
                     </template>
                 </el-table-column>
             </el-table>
-
-
-            <!-- <div class="yl-pagination">
-                <el-pagination
-                  @size-change="handleSizeChange"
-                  @current-change="handleCurrentChange"
-                  :current-page="pageIndex"
-                  :page-sizes="[15, 30, 45, 60]"
-                  layout="total, sizes, prev, pager, next, jumper"
-                  :page-size="parseInt(pagination.per_page)"
-                  :total="pagination.total"
-                  style="float:right;">
-                </el-pagination>
-            </div> -->
-
         </div>
     </div>
 </template>

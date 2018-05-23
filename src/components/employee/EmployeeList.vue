@@ -24,25 +24,25 @@
         </el-table-column>
 
         <el-table-column label="天配">
-          <template scope="scope">
+          <template slot-scope="scope">
             <span v-text="calculatePercentage(scope.row,0)"></span>
           </template>
         </el-table-column>
 
         <el-table-column label="月配">
-          <template scope="scope">
+          <template slot-scope="scope">
             <span v-text="calculatePercentage(scope.row,1)"></span>
           </template>
         </el-table-column>
 
         <el-table-column label="提成">
-          <template scope="scope">
+          <template slot-scope="scope">
             <span v-text="calculatePercentage(scope.row,2)"></span>
           </template>
         </el-table-column>
 
         <el-table-column label="状态">
-          <template scope="scope">
+          <template slot-scope="scope">
             <span v-text="calculateEmployStatus(scope.row)"></span>
           </template>
         </el-table-column>
@@ -52,7 +52,7 @@
         <el-table-column prop="remark" label="备注">
         </el-table-column>
         <el-table-column label="操作">
-          <template scope="scope">
+          <template slot-scope="scope">
             <el-button v-if="role=='AgentAdmin'" size="mini" @click="handleEditEmployee(scope.row)" icon="edit" title="员工修改"></el-button>
             <el-button size="mini" @click="handlePlayEmployee(scope.row)" title="扮演员工"><i class="fa fa-play-circle"></i></el-button>
           </template>

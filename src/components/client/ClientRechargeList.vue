@@ -84,7 +84,7 @@
       <el-table-column prop="remark" label="后台备注" show-overflow-tooltip></el-table-column>
 
       <el-table-column label="操作" v-if="">
-        <template scope="scope">
+        <template slot-scope="scope">
           <!--<el-button size="mini" @click="segueToClientRechargeAudit(scope.row)" v-if="scope.row.new_status == '处理中'&&role=='SystemAdmin'" title="账户审核"><i class="fa fa-pencil"></i></el-button>-->
           <template v-if="scope.row.new_status == '处理中' && role=='SystemAdmin'">
             <el-button size="mini" @click="segueToClientRechargeAudit(scope.row)" v-if="scope.row.new_status == '处理中'&&show_button_list.indexOf('客户充值审核')!=-1" title="账户审核"><i class="fa fa-pencil"></i></el-button>

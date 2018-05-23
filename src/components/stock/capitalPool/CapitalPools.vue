@@ -24,7 +24,7 @@
       <el-table-column prop="updated_time" label="更新时间" min-width="120" show-overflow-tooltip></el-table-column>
 
       <el-table-column label="操作">
-        <template scope="scope">
+        <template slot-scope="scope">
           <router-link :to="{path:'/stock/capitalPool/edit/'+scope.row.id}">
             修改&nbsp;&nbsp;
           </router-link>

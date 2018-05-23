@@ -68,6 +68,8 @@
     },
     computed: {
       user: function () {
+          console.log(this.infoData)
+          console.log(123123123123123)
         return this.infoData.user ? this.infoData.user : {
           name: '',
           real_name: '',

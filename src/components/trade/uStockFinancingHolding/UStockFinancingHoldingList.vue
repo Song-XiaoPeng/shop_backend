@@ -46,20 +46,38 @@
               v-loading="loading"
               style="width: 100%;">
 
-      <el-table-column prop="stock_finance_id" label="子账户ID" show-overflow-tooltip></el-table-column>
+      <!--<el-table-column prop="stock_finance_id" label="子账户ID" show-overflow-tooltip></el-table-column>-->
+      <!--<el-table-column prop="client.cust_info" min-width="120px" label="客户信息" show-overflow-tooltip></el-table-column>-->
+      <!--<el-table-column prop="updated_time" min-width="120" label="更新时间" show-overflow-tooltip></el-table-column>-->
+      <!--<el-table-column prop="stock_code" label="证券代码" show-overflow-tooltip></el-table-column>-->
+      <!--<el-table-column prop="stock_name" label="证券名称" show-overflow-tooltip></el-table-column>-->
+      <!--<el-table-column prop="holdings_quantity" label="持仓数量" show-overflow-tooltip></el-table-column>-->
+      <!--<el-table-column prop="available_sell_quantity" label="可卖数量" show-overflow-tooltip></el-table-column>-->
+      <!--<el-table-column prop="total_sold_amount" label="累计卖出金额" show-overflow-tooltip></el-table-column>-->
+      <!--<el-table-column prop="avarage" label="参考成本价" show-overflow-tooltip></el-table-column>-->
+      <!--<el-table-column prop="stock_info.price" label="最新价格"></el-table-column>-->
+      <!--<el-table-column prop="stock_total_amount" label="最新市值"></el-table-column>-->
+      <!--<el-table-column v-if="role_group=='System'" prop="parent_stock_finance_id" label="母账户ID"></el-table-column>-->
+
+      <el-table-column prop="id" label="主键编号" show-overflow-tooltip></el-table-column>
+      <el-table-column prop="entrust_id" label="委托编号" show-overflow-tooltip></el-table-column>
       <el-table-column prop="client.cust_info" min-width="120px" label="客户信息" show-overflow-tooltip></el-table-column>
       <el-table-column prop="updated_time" min-width="120" label="更新时间" show-overflow-tooltip></el-table-column>
-      <el-table-column prop="stock_code" label="证券代码" show-overflow-tooltip></el-table-column>
-      <el-table-column prop="stock_name" label="证券名称" show-overflow-tooltip></el-table-column>
-      <el-table-column prop="holdings_quantity" label="持仓数量" show-overflow-tooltip></el-table-column>
-      <el-table-column prop="available_sell_quantity" label="可卖数量" show-overflow-tooltip></el-table-column>
-      <el-table-column prop="total_sold_amount" label="累计卖出金额" show-overflow-tooltip></el-table-column>
-      <el-table-column prop="avarage" label="参考成本价" show-overflow-tooltip></el-table-column>
-      <el-table-column prop="stock_info.price" label="最新价格"></el-table-column>
-      <el-table-column prop="stock_total_amount" label="最新市值"></el-table-column>
+      <el-table-column prop="option_code" label="合约代码" show-overflow-tooltip></el-table-column>
+      <el-table-column prop="option_name" label="合约简称" show-overflow-tooltip></el-table-column>
+      <el-table-column prop="option_type" label="期权种类" show-overflow-tooltip></el-table-column>
+      <el-table-column prop="hold_amount" label="持仓数量" show-overflow-tooltip></el-table-column>
+      <el-table-column prop="enable_amount" label="可用数量" show-overflow-tooltip></el-table-column>
+      <el-table-column prop="exercise_date" label="行权日期" show-overflow-tooltip></el-table-column>
+      <el-table-column prop="exercise_price" label="行权价格" show-overflow-tooltip></el-table-column>
+      <el-table-column prop="total_fare" label="总费用" show-overflow-tooltip></el-table-column>
+      <el-table-column prop="status" label="状态" show-overflow-tooltip></el-table-column>
+      <el-table-column prop="created_time" label="创建时间" show-overflow-tooltip></el-table-column>
       <el-table-column v-if="role_group=='System'" prop="parent_stock_finance_id" label="母账户ID"></el-table-column>
+
+
       <el-table-column label="操作" min-width="120" v-if="role_group=='System'">
-        <template scope="scope" v-if="role=='SystemAdmin' || role=='SystemRisk'">
+        <template slot-scope="scope" v-if="role=='SystemAdmin' || role=='SystemRisk'">
           <a v-if="false" href="javascript:void(0);" @click="openDeliveryStock(scope.row)">派股</a>
           <a href="javascript:void(0);" @click="doEveningUpPerHolding(scope.row)">平仓</a>
           <a href="javascript:void(0);" @click="openRetrieveStock(scope.row)">系统回收</a>
@@ -174,8 +192,7 @@
             stock_name: '',
           },
           where: {
-            stock_finance_id: this.sfid,
-            is_recycle: 0
+
           },
           whereBetween: {
             updated_time: ['', '']

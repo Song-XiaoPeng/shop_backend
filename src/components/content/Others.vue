@@ -16,28 +16,28 @@
                 <el-table-column label="ID" prop="id"></el-table-column>
 
                <el-table-column label="名称">
-                    <template scope="scope">
+                    <template slot-scope="scope">
                         <span v-text="scope.row.name"></span>
                     </template>
                 </el-table-column>
 
                 <el-table-column label="来源">
-                    <template scope="scope">
+                    <template slot-scope="scope">
                         <span v-text="scope.row.agent_id == userInfo.agent_id ? '本站' : '代理'+scope.row.agent_id"></span>
                     </template>
                 </el-table-column>
 
 
                 <el-table-column prop="created_time" label="操作时间">
-                    <template scope="scope">
+                    <template slot-scope="scope">
                         <span v-text="scope.row.updated_time"></span>
                     </template>
                 </el-table-column>
 
                 <el-table-column label="操作" min-width="150px">
-                    <template scope="scope">
+                    <template slot-scope="scope">
                         <el-button size="mini" @click="handleEditProtocol(scope.row.id)" title="代理修改"><i class="fa fa-pencil"></i></el-button>
-                        <el-button size="small" @click="destroy(scope.row.id,scope.$index)" title="删除" icon="delete"></el-button>
+                        <el-button size="small" @click="destroy(scope.row.id,scope.$index)" title="删除" icon="el-icon-delete"></el-button>
                     </template>
                 </el-table-column>
             </el-table>

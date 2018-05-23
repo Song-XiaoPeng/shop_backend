@@ -17,6 +17,7 @@
         clearable
         filterable
         remote
+        ref="select"
         :remote-method="searchAgent"
         :loading="loading"
         placeholder="搜索ID/名称/手机号(仅显示最匹配的10条)">
@@ -56,7 +57,7 @@
     <el-form-item label="开户银行" prop="bank_name" v-if="role_group=='System'">
       <!--<el-input v-model="form.bank_name"></el-input>-->
       <el-select v-model="form.bank_name" placeholder="请选择类型" filterable clearable>
-        <el-option v-for="item in bankCardOptions" :label="item.bankName" :value="item.bankName" :key="item.bankCode"></el-option>
+        <el-option v-for="(item,idx) in bankCardOptions" :label="item.bankName" :value="item.bankName" :key="item.idx"></el-option>
       </el-select>
     </el-form-item>
     <el-form-item label="开户支行" v-if="role_group=='System'">
@@ -86,16 +87,16 @@
     </el-form-item>
 
 
-    <el-form-item label="天配递延费提成" required prop="day_percentage">
-      <el-input v-model.number="form.day_percentage"></el-input>
-    </el-form-item>
+    <!--<el-form-item label="天配递延费提成" required prop="day_percentage">-->
+      <!--<el-input v-model.number="form.day_percentage"></el-input>-->
+    <!--</el-form-item>-->
 
-    <el-form-item label="月配提成比例" required prop="month_percentage">
-      <el-input v-model.number="form.month_percentage"></el-input>
-    </el-form-item>
+    <!--<el-form-item label="月配提成比例" required prop="month_percentage">-->
+      <!--<el-input v-model.number="form.month_percentage"></el-input>-->
+    <!--</el-form-item>-->
 
-    <el-form-item label="服务费提成" required prop="commission_percentage">
-      <el-input v-model.number="form.commission_percentage"></el-input>
+    <el-form-item label="开仓费" required prop="service_charge">
+      <el-input v-model.number="form.service_charge"></el-input>
     </el-form-item>
 
     <el-form-item label="备注" prop="remark">
@@ -108,7 +109,7 @@
     </el-form-item>
 
     <el-form-item label="配置选项" v-if="role=='SystemAdmin'">
-      <el-checkbox v-if="role_group=='System' && domain=='gubao68.com'" v-model="form.is_independent" label="贴牌代理商" :true-label="1" :false-label="0"></el-checkbox>
+      <el-checkbox v-if="role_group=='System' && (domain=='gubao68.com' || domain=='localhost')" v-model="form.is_independent" label="贴牌代理商" :true-label="1" :false-label="0"></el-checkbox>
       <el-checkbox v-if="role_group=='System'" v-model="form.is_forbid_cash" label="禁止提现" :true-label="1" :false-label="0"></el-checkbox>
       <el-checkbox v-if="role_group=='System'" v-model="form.is_lock_agent_cust" label="锁定代理商客户" :true-label="1" :false-label="0"></el-checkbox>
       <el-checkbox v-model="form.is_locked" label="禁用" :true-label=1 :false-label=0></el-checkbox>
@@ -118,38 +119,6 @@
       <el-radio v-model="form.interest_cost_type" label=1>峰值计算</el-radio>
       <el-radio v-model="form.interest_cost_type" label=2>即时计算</el-radio>
       <span style="color:red">(请慎重选择计息方式,创建后每月只能修改一次且修改后次月才能生效)</span>
-    </el-form-item>
-
-    <div v-if="parent_agent_level==1">
-      <el-form-item label="期权业务">
-        <el-switch :width="60"
-                   @change="switchChange()"
-                   v-model="form.is_option_open">
-        </el-switch>
-        <span style="color:red">(选择关，您的直客与代理商均无期权业务权限)</span>
-      </el-form-item>
-    </div>
-
-    <el-form-item label="直客期权">
-      <el-switch :width="60"
-                 @change="switchChange1()"
-                 :disabled="!form.is_option_open"
-                 v-model="form.is_option_open_trading">
-      </el-switch>
-      <span style="color:red" v-if="parent_agent_level!=4">(选择关，您的直客无期权业务权限，不影响代理商)</span>
-      <span style="color:red" v-if="parent_agent_level==4">(选择关，您的直客无期权业务权限)</span>
-    </el-form-item>
-
-    <el-form-item label="期权金分成比例" prop="option_add_percentage">
-      <el-input v-model.number="form.option_add_percentage" :disabled="!form.is_option_open"></el-input>
-    </el-form-item>
-
-    <el-form-item label="手续费分成比例" prop="option_service_percentage">
-      <el-input v-model.number="form.option_service_percentage" :disabled="!form.is_option_open"></el-input>
-    </el-form-item>
-
-    <el-form-item label="日管理费分成比例" prop="option_daily_manage_percentage">
-      <el-input v-model.number="form.option_daily_manage_percentage" :disabled="!form.is_option_open"></el-input>
     </el-form-item>
 
     <el-form-item>
@@ -201,8 +170,6 @@
           capital_id: null,
           is_forbid_cash: 0,
           is_lock_agent_cust: 0,
-          is_option_open: 0,
-          is_option_open_trading: 0,//开放前端业务
           bank_name: '',
           bank_account: null,
           is_locked: 0,
@@ -215,11 +182,9 @@
           day_percentage: '',
           month_percentage: '',
           commission_percentage: '',
+          service_charge: '',
           remark: '',
           interest_cost_type: '',
-          option_add_percentage:'',
-          option_service_percentage:'',
-          option_daily_manage_percentage:'',
         },
         formRule: {
           //TODO:blur 提示失败,升级到高版本的element-ui 可以解决,只能提交的时候 提示
@@ -323,42 +288,14 @@
               trigger: 'blur'
             }
           ],
-          commission_percentage: [
+          service_charge: [
             {
               min: 0,
-              max: 1,
               type: 'number',
-              message: '比例在0~1之间',
+              message: '大于0的整数',
               trigger: 'blur'
             }
           ],
-            option_add_percentage: [
-                {
-                    min: 0,
-                    max: 1,
-                    type: 'number',
-                    message: '比例在0~1之间',
-                    trigger: 'blur'
-                }
-            ],
-            option_service_percentage: [
-                {
-                    min: 0,
-                    max: 1,
-                    type: 'number',
-                    message: '比例在0~1之间',
-                    trigger: 'blur'
-                }
-            ],
-            option_daily_manage_percentage: [
-                {
-                    min: 0,
-                    max: 1,
-                    type: 'number',
-                    message: '比例在0~1之间',
-                    trigger: 'blur'
-                }
-            ]
         }
       }
     },
@@ -387,6 +324,7 @@
       fetchAgentListData() {
         agentSelectorList({parent_id: this.$route.query.parentId}).then((res) => {
           this.selectorListData = res.data;
+          this.parent_agent_level = res.data[0]['agent_level']
           let id = this.$route.query.parentId ? this.$route.query.parentId : res.data[0].id;
           this.form.parent_id = Number(id);
         });
@@ -399,12 +337,7 @@
       },
       onSubmit() {
           this.loading = true;
-          //如果不开期权，三个参数置为0
-          if (!Boolean(this.form.is_option_open)) {
-              this.form.option_add_percentage = 0
-              this.form.option_service_percentage = 0
-              this.form.option_daily_manage_percentage = 0
-          }
+
         this.$refs.agentForm.validate((valid) => {
           if (valid) {
             agentCreate(this.form).then((res) => {
@@ -421,29 +354,14 @@
         let select = this.selectorListData.find((value, index, arr) => {
           return value.id == newValue;
         });
+        if(select == undefined) return
         this.parent_agent_level = select.agent_level;
         this.selectorListData.forEach(item => {
           if (item.id === newValue) {
             this.form.capital_id = item.capital_id;
           }
         });
-          //创建二级以下的代理
-          if (this.parent_agent_level != 1) {
-              this.form.is_option_open = Boolean(select.is_option_open)
-          } else {
-              this.form.is_option_open = false
-          }
       },
-        switchChange() {
-            if (!Boolean(this.form.is_option_open)) {
-                this.form.is_option_open_trading = false
-            }
-        },
-        switchChange1() {
-            if (Boolean(this.form.is_option_open_trading)) {
-                this.form.is_option_open = true
-            }
-        }
     },
     computed: {
       options: function () {

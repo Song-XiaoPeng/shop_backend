@@ -15,7 +15,7 @@
         :row-style="showRow"
         v-loading="loading">
             <el-table-column prop="id" label="ID" align="left">
-                <template scope="scope">
+                <template slot-scope="scope">
                 <span v-if="scope.row._level" v-for="n in scope.row._level">&nbsp;&nbsp;.&nbsp;&nbsp;&nbsp;</span>
                 <i v-if="scope.row._expanded===0 && !scope.row._nomore" class="fa fa-plus-square fa-lg" @click="showChildren(scope)"></i>
                 <i v-else-if="scope.row._expanded===1 && !scope.row._nomore" class="fa fa-minus-square fa-lg" @click="hideChildren(scope.row)"></i>
@@ -27,7 +27,7 @@
             <el-table-column prop="parent_id" label="父ID"></el-table-column>
             <el-table-column prop="path" label="前端路由"></el-table-column>
             <el-table-column prop="icon_class" label="图标" align="left">
-                <template scope="scope">
+                <template slot-scope="scope">
                     <span style="display:inline-block;width:20%;padding-left:30px">
                         <i :class="scope.row.icon_class"></i>
                     </span style="display:inline-block;width:50%">
@@ -36,7 +36,7 @@
             </el-table-column>
             <el-table-column prop="auth" label="权限"></el-table-column>
             <el-table-column label="操作">
-                <template scope="scope">
+                <template slot-scope="scope">
                     <el-button
                     type="primary"
                     size="small"
@@ -65,7 +65,7 @@
                 this.$router.push({path: '/roles/roleAuthEdit/' + row.id,query:{type:row._level}})
             },
             handleDelete() {},
-            showChildren(scope) {                
+            showChildren(scope) {
                 if (scope.row.loadChildren) {
                     //如果已经load过children 则直接展开
                     return scope.row._expanded = 1;
@@ -95,14 +95,15 @@
                 })
             },
             hideChildren(row) {
+                console.log(row)
                 row._expanded = 0;
             },
             showRow(row, index) {
-                if(typeof(row._show) === 'object'){
-                    if(row._show._expanded === 1){
+                if(typeof(row.row._show) === 'object'){
+                    if(row.row._show._expanded === 1){
                         return 
                     }else {
-                        row._expanded = 0
+                        row.row._expanded = 0
                         return 'display:none'
                     }
                 }

@@ -21,11 +21,11 @@
       <el-table-column prop="holiday" label="节假日时间" show-overflow-tooltip></el-table-column>
       <el-table-column prop="remark" label="备注" show-overflow-tooltip></el-table-column>
       <el-table-column label="操作" v-if="false">
-        <template scope="scope">
+        <template slot-scope="scope">
           <router-link :to="{path:'/system/holidayMaintain/edit/'+scope.row.id}">
             <el-button size="small" title="修改" icon="edit"></el-button>
           </router-link>
-          <el-button size="small" @click="destroy(scope.row.id,scope.$index)" title="删除" icon="delete"></el-button>
+          <el-button size="small" @click="destroy(scope.row.id,scope.$index)" title="删除" icon="el-icon-delete"></el-button>
         </template>
       </el-table-column>
     </el-table>

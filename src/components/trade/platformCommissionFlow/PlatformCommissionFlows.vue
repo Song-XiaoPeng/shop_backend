@@ -46,24 +46,24 @@
 
       <el-table-column prop="id" label="ID" show-overflow-tooltip></el-table-column>
       <el-table-column prop="platform_flow_money" label="平台当日流水金额" show-overflow-tooltip>
-        <template scope="scope">
+        <template slot-scope="scope">
           {{scope.row.platform_flow_money | round(2)}}
         </template>
       </el-table-column>
       <el-table-column prop="accounting_money" label="记账金额" show-overflow-tooltip>
-        <template scope="scope">
+        <template slot-scope="scope">
           {{scope.row.accounting_money | round(2)}}
         </template>
       </el-table-column>
       <el-table-column prop="replaced_accounting_type" label="记账类型" show-overflow-tooltip></el-table-column>
       <el-table-column prop="accounting_time" label="记账时间" show-overflow-tooltip></el-table-column>
       <el-table-column prop="account_left_money" label="充值账户余额" show-overflow-tooltip>
-        <template scope="scope">
+        <template slot-scope="scope">
           {{scope.row.account_left_money | round(2)}}
         </template>
       </el-table-column>
       <el-table-column prop="history_bargin_money" label="历史成交金额" show-overflow-tooltip>
-        <template scope="scope">
+        <template slot-scope="scope">
           {{scope.row.history_bargin_money | round(2)}}
         </template>
       </el-table-column>

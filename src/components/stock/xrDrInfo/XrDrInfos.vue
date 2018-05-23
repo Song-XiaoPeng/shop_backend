@@ -36,7 +36,7 @@
       <el-table-column prop="xr_dr_status" label="除权除息状态" show-overflow-tooltip></el-table-column>
 
       <el-table-column label="操作">
-        <template scope="scope">
+        <template slot-scope="scope">
           <a href="javascript:void(0);" @click="xrdr(scope.row)" :class="{link_not_allow:(scope.row.xr_dr_status=='已分配')}">重新分配</a>
         </template>
       </el-table-column>

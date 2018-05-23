@@ -16,51 +16,51 @@
                 <el-table-column label="ID" prop="id"></el-table-column>
 
                <el-table-column label="代理商id">
-                    <template scope="scope">
+                    <template slot-scope="scope">
                         <span v-text="scope.row.agent_id"></span>
                     </template>
                 </el-table-column>
 
                <el-table-column label="代理商名称">
-                    <template scope="scope">
+                    <template slot-scope="scope">
                         <span v-text="scope.row.agent_name"></span>
                     </template>
                 </el-table-column>
 
                <el-table-column label="参数名称">
-                    <template scope="scope">
+                    <template slot-scope="scope">
                         <span v-text="scope.row.param_key"></span>
                     </template>
                 </el-table-column>
 
                <el-table-column label="参数值">
-                    <template scope="scope">
+                    <template slot-scope="scope">
                         <span v-text="scope.row.param_value"></span>
                     </template>
                 </el-table-column>
 
                <el-table-column label="参数说明">
-                    <template scope="scope">
+                    <template slot-scope="scope">
                         <span v-text="scope.row.remark"></span>
                     </template>
                 </el-table-column>
 
                <el-table-column label="修改时间">
-                    <template scope="scope">
+                    <template slot-scope="scope">
                         <span v-text="scope.row.updated_time"></span>
                     </template>
                 </el-table-column>
 
                <el-table-column label="添加时间">
-                    <template scope="scope">
+                    <template slot-scope="scope">
                         <span v-text="scope.row.created_time"></span>
                     </template>
                 </el-table-column>
 
                 <el-table-column label="操作" min-width="150px">
-                    <template scope="scope">
+                    <template slot-scope="scope">
                         <el-button size="mini" @click="edit(scope.row.id)" title="修改系统设置"><i class="fa fa-pencil"></i></el-button>
-                        <el-button size="small" @click="destroy(scope.row.id,scope.$index)" title="删除" icon="delete"></el-button>
+                        <el-button size="small" @click="destroy(scope.row.id,scope.$index)" title="删除" icon="el-icon-delete"></el-button>
                     </template>
                 </el-table-column>
             </el-table>

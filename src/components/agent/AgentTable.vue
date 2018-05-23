@@ -27,15 +27,7 @@
             :value="item.value">
           </el-option>
         </el-select>
-        <el-select size="small" style="width:130px;" v-model="filters.is_option_open" placeholder="是否开通期权" clearable @change="changeSelect">
-          <el-option
-            style="text-align: center"
-            v-for="item in options_list"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
+
       </el-col>
       <el-col :span="12" style="text-align:right;">
         <input class="yl-input-text" v-model="filters.phone" style="width:120px" type="text" placeholder="联系人手机号">
@@ -56,13 +48,13 @@
         <el-table-column label="代理商编号" prop="agent_number"></el-table-column>
         <el-table-column label="名称" prop="agent_name"></el-table-column>
         <el-table-column label="域名">
-          <template scope="scope">
+          <template slot-scope="scope">
             <span v-text="scope.row.info ? scope.row.info.web_domain : ''"></span>
           </template>
         </el-table-column>
 
         <el-table-column label="上级代理商">
-          <template scope="scope">
+          <template slot-scope="scope">
             <span v-if="scope.row.parent">{{scope.row.parent.agent_name}}</span>
           </template>
         </el-table-column>
@@ -98,7 +90,7 @@
         </el-table-column>
 
         <el-table-column label="操作" min-width="120">
-          <template scope="scope">
+          <template slot-scope="scope">
             <router-link
               v-if="(role=='AgentAdmin' || role=='SystemAdmin') && scope.row.agent_level<5"
               class="el-button el-button--default el-button--mini"
@@ -165,12 +157,10 @@
           phone: '',
           independent_remark: '',
           is_independent: '',
-          is_option_open: '',
         },
         agentSelects: [{value: 1, label: 'K'}, {value: 2, label: 'H'}, {value: 3, label: 'T'},
           {value: 4, label: 'E'}, {value: 5, label: 'Q'}],
         independent_list: [{value: 1, label: '是贴牌'}, {value: 0, label: '非贴牌'}],
-        options_list: [{value: 1, label: '已开通期权'}, {value: 0, label: '未开通期权'}],
         playLoginUrl: '',
         pagination: {},
         listLoading: false,

@@ -43,7 +43,7 @@
             <ul class="sidebar-menu">
               <!--这里面不要动了-->
               <template v-for=" (value,num) in navTree">
-                <li :key="value.name" :class="handleMenuClass(value,num)">
+                <li :key="num" :class="handleMenuClass(value,num)">
                   <a href="javascript:;" @click="expand_tree(num)">
                     <i :class="value.iconClass"></i>
                     <span>{{value.name}}</span>
@@ -52,9 +52,9 @@
                       </span>
                   </a>
                   <ul class="treeview-menu">
-                    <template v-for="item in value.children">
+                    <template v-for="(item,idx) in value.children">
                       <!--<li :key="item.path" :class="{active:currentPath.indexOf(item.path)==0}">-->
-                      <li :key="item.path" :class="{active:currentPath==item.path}">
+                      <li :key="idx" :class="{active:currentPath==item.path}">
                         <router-link :to="item.path"><i class="fa fa-circle-o"></i>{{item.name}}</router-link>
                       </li>
                     </template>
@@ -67,7 +67,7 @@
       </el-col>
 
 
-      <el-col :span="21" class="right">
+      <el-col :span="21" class="right1">
         <div class="right-title">
           <div id="rightico"></div>
           <div><strong>位置：</strong>

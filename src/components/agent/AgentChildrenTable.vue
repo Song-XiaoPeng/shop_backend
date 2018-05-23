@@ -12,13 +12,13 @@
       <el-table-column label="名称" prop="agent_name"></el-table-column>
 
       <el-table-column label="域名">
-        <template scope="scope">
+        <template slot-scope="scope">
           <span v-text="scope.row.info ? scope.row.info.web_domain : ''"></span>
         </template>
       </el-table-column>
 
       <el-table-column label="上级代理商">
-        <template scope="scope">
+        <template slot-scope="scope">
           <span v-if="scope.row.parent">{{scope.row.parent.agent_name}}</span>
         </template>
       </el-table-column>
@@ -29,32 +29,32 @@
       </el-table-column>
 
       <el-table-column label="天配" width="45">
-        <template scope="scope">
+        <template slot-scope="scope">
           <span v-text="calculatePercentage(scope.row,0)"></span>
         </template>
       </el-table-column>
 
       <el-table-column label="月配" width="45">
-        <template scope="scope">
+        <template slot-scope="scope">
           <span v-text="calculatePercentage(scope.row,1)"></span>
         </template>
       </el-table-column>
 
       <el-table-column label="服务费" width="45">
-        <template scope="scope">
+        <template slot-scope="scope">
           <span v-text="calculatePercentage(scope.row,2)"></span>
         </template>
       </el-table-column>
 
 
       <el-table-column prop="agent_level" label="代理值" width="46">
-        <template scope="sp">
+        <template slot-scope="sp">
           {{agentLevels[sp.row.agent_level]}}
         </template>
       </el-table-column>
 
       <el-table-column label="状态" width="46">
-        <template scope="scope">
+        <template slot-scope="scope">
           <span v-text="scope.row.is_locked ? '禁用' : '正常'"></span>
         </template>
       </el-table-column>
@@ -64,7 +64,7 @@
       </el-table-column>
 
       <el-table-column label="操作" min-width="120">
-        <template scope="scope">
+        <template slot-scope="scope">
           <router-link
             v-if="(role=='AgentAdmin' || role=='SystemAdmin') && scope.row.agent_level<5"
             class="el-button el-button--default el-button--mini"

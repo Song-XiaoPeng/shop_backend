@@ -87,13 +87,13 @@
         </el-table-column>
         <el-table-column label="操作" width="60"
                          v-if="role=='SystemAccount' || role=='SystemAdmin'">
-          <template scope="scope" v-if="show_button_list.indexOf('客户提现审核')!=-1">
+          <template slot-scope="scope" v-if="show_button_list.indexOf('客户提现审核')!=-1">
             <el-button v-if="scope.row.cash_status <= 1" size="mini" @click="segueToAudit(scope.row)" title="审核处理"><i class="fa fa-pencil"></i></el-button>
           </template>
         </el-table-column>
         <!--<el-table-column label="操作" width="60"-->
                          <!--v-if="show_button_list.indexOf('客户提现审核')!=-1">-->
-          <!--<template scope="scope">-->
+          <!--<template slot-scope="scope">-->
             <!--<el-button v-if="scope.row.cash_status <= 1" size="mini" @click="segueToAudit(scope.row)" title="审核处理"><i class="fa fa-pencil"></i></el-button>-->
           <!--</template>-->
         <!--</el-table-column>-->

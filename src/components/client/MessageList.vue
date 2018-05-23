@@ -25,7 +25,7 @@
         <el-table-column label="内容" prop="msg_content" min-width="160"></el-table-column>
         <el-table-column label="发送时间" prop="send_time"></el-table-column>
         <el-table-column label="发送状态">
-          <template scope="scp">
+          <template slot-scope="scp">
             {{scp.row.status > 0 ? '成功' : '失败'}}
           </template>
         </el-table-column>

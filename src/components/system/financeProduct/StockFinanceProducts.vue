@@ -27,12 +27,12 @@
       <el-table-column prop="liquidation_line_rate" label="平仓线比例" show-overflow-tooltip></el-table-column>
       <el-table-column prop="single_stock_hold_rate" label="单票持仓比例" show-overflow-tooltip></el-table-column>
       <el-table-column label="启用禁用">
-        <template scope="scope">
+        <template slot-scope="scope">
           {{ scope.row.disable ? '否' : '是' }}
         </template>
       </el-table-column>
       <el-table-column label="操作">
-        <template scope="scope">
+        <template slot-scope="scope">
           <router-link :to="{path:'/system/financeProduct/edit/'+scope.row.id}">
             <el-button size="small" title="修改" icon="edit"></el-button>
           </router-link>

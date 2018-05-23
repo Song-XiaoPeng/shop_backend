@@ -55,18 +55,18 @@
             <el-table-column label="总资产" prop="stock_finance.totalAssert" show-overflow-tooltip min-width="60px"></el-table-column>
             <el-table-column label="证券市值" prop="stock_finance.stockFinanceMarketValue" show-overflow-tooltip min-width="60px"></el-table-column>
             <el-table-column label="盈亏额" show-overflow-tooltip min-width="60px">
-                <template scope="scope">
+                <template slot-scope="scope">
                     <span :style="{color:(scope.row.stock_finance.winLoss<0?'red':'black')}">{{scope.row.stock_finance.winLoss}}</span>
                 </template>
             </el-table-column>
             <el-table-column label="持仓率" prop="stock_finance.holdingRate" show-overflow-tooltip></el-table-column>
             <el-table-column label="预警线差额" show-overflow-tooltip>
-                <template scope="scope">
+                <template slot-scope="scope">
                     <span :style="{color:(scope.row.stock_finance.precautiousGap<0?'red':'black')}">{{scope.row.stock_finance.precautiousGap}}</span>
                 </template>
             </el-table-column>
             <el-table-column label="平仓线差额" show-overflow-tooltip>
-                <template scope="scope">
+                <template slot-scope="scope">
                     <span :style="{color:(scope.row.stock_finance.liquidationGap<0?'red':'black')}">{{scope.row.stock_finance.liquidationGap}}</span>
                 </template>
             </el-table-column>
@@ -74,7 +74,7 @@
           <el-table-column label="子账户状态" prop="status" show-overflow-tooltip></el-table-column>
 
             <el-table-column label="操作" min-width="230">
-                <template scope="scope">
+                <template slot-scope="scope">
                     <router-link v-if="role_group=='System'" :to="{path:'/stock/uStockFinancings/'+scope.row.id}">
                         交易查询
                     </router-link>

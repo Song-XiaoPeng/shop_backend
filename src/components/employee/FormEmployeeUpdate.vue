@@ -10,9 +10,7 @@
       <el-input v-model.number="form.name" disabled></el-input>
     </el-form-item>
 
-
     <el-form-item label="请选择角色" required prop="role_id" :disabled="form.role_id != 16">
-
       <el-select v-model.number="form.role_id" placeholder="请选择">
         <el-option
           v-for="(value,key) in roleOptions"
@@ -51,25 +49,22 @@
       <el-input v-model.number="form.month_percentage"></el-input>
     </el-form-item>
 
-    <el-form-item label="返佣提成比例" required prop="commission_percentage" v-if="role=='AgentAdmin'">
+    <el-form-item label="返佣提成比例" required prop="service_charge" v-if="role=='AgentAdmin'">
       <el-input v-model.number="form.commission_percentage"></el-input>
     </el-form-item>
 
     <el-form-item label="备注" prop="remark">
-
       <el-input
         type="textarea"
         :rows="3"
         placeholder="请输入内容"
         v-model="form.remark">
       </el-input>
-
     </el-form-item>
 
     <el-form-item label="是否禁止">
       <el-switch on-text="" off-text="" v-model="form.is_forbid" :on-value="1" :off-value="0"></el-switch>
     </el-form-item>
-
 
     <el-form-item>
       <el-button type="primary"

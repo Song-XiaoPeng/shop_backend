@@ -67,13 +67,13 @@
       <el-table-column prop="remark" label="备注" min-width="180">
       </el-table-column>
       <!--<el-table-column label="操作" min-width="50px" v-if="role=='SystemAdmin' || role=='SystemAccount'">
-        <template scope="scope">
+        <template slot-scope="scope">
           <el-button v-if="scope.row.replaced_cash_status=='已申请' || scope.row.replaced_cash_status=='处理中'  || scope.row.replaced_cash_status=='审核通过'" size="mini" @click="$router.push({name:'代理提现审核',params:{id:scope.row.id}})" title="审核"><i class="fa fa-pencil"></i></el-button>
         </template>
       </el-table-column>-->
       <template v-if="role=='SystemAdmin' || role=='SystemAccount'">
         <el-table-column label="操作" min-width="50px" v-if="show_button_list.indexOf('提现记录审核')!=-1">
-          <template scope="scope">
+          <template slot-scope="scope">
             <el-button v-if="scope.row.replaced_cash_status=='已申请' || scope.row.replaced_cash_status=='处理中'" size="mini" @click="$router.push({name:'代理提现审核',params:{id:scope.row.id}})" title="审核"><i class="fa fa-pencil"></i></el-button>
           </template>
         </el-table-column>

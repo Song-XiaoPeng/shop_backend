@@ -68,7 +68,7 @@
       <el-table-column label="子账户状态" prop="status" show-overflow-tooltip></el-table-column>
 
       <el-table-column label="操作">
-        <template scope="scope">
+        <template slot-scope="scope">
           <a href="javascript:void(0);" @click="openInterest(scope.row)">付息详情</a>
         </template>
       </el-table-column>

@@ -52,7 +52,7 @@
       <el-table-column prop="stock_total_amount" label="最新市值"></el-table-column>
       <el-table-column prop="parent_stock_finance_id" label="母账户ID"></el-table-column>
       <el-table-column label="操作" min-width="120" v-if="role=='SystemAdmin' || role=='SystemRisk'">
-        <template scope="scope">
+        <template slot-scope="scope">
           <a href="javascript:void(0);" @click="openAssignStock(scope.row)">系统分配</a>
         </template>
       </el-table-column>

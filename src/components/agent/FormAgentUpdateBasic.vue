@@ -44,7 +44,7 @@
                   prop="bank_name">
       <!--<el-input v-model="basic.bank_name"></el-input>-->
       <el-select v-model="basic.bank_name" placeholder="请选择类型" filterable clearable>
-        <el-option v-for="item in bankCardOptions" :label="item.bankName" :value="item.bankName" :key="item.bankCode"></el-option>
+        <el-option v-for="(item,idx) in bankCardOptions" :label="item.bankName" :value="item.bankName" :key="idx"></el-option>
       </el-select>
     </el-form-item>
     <el-form-item label="开户支行" v-if="role_group=='System'">
@@ -94,24 +94,6 @@
       <el-radio v-model="basic.interest_cost_type" :label=2 :disabled="basic.cost_type_changed">即时计算</el-radio>
       <span v-if="!basic.cost_type_changed" style="color:red">&nbsp&nbsp&nbsp&nbsp注意:(此项一个月仅能修改一次!)</span>
       <span v-else style="color:red">&nbsp&nbsp&nbsp&nbsp注意:(此项此月已修改过! {{basic.interest_cost_type_effective_date}} 生效!)</span>
-    </el-form-item>
-
-    <el-form-item label="期权业务" v-if="basic.agent_level==2">
-      <el-switch :width="60"
-                 @change="switchChange()"
-                 v-model="basic.is_option_open">
-      </el-switch>
-      <span style="color:red">(选择关，您的直客与代理商均无期权业务权限)</span>
-    </el-form-item>
-
-    <el-form-item label="直客期权">
-      <el-switch :width="60"
-                 @change="switchChange1()"
-                 :disabled="basic.agent_level==1 ? false: !basic.is_option_open"
-                 v-model="basic.is_option_open_trading">
-      </el-switch>
-      <span style="color:red" v-if="basic.agent_level!=5">(选择关，您的直客无期权业务权限，不影响代理商)</span>
-      <span style="color:red" v-if="basic.agent_level==5">(选择关，您的直客无期权业务权限)</span>
     </el-form-item>
 
     <el-form-item>
@@ -204,8 +186,6 @@
             parent_id: null,
             is_forbid_cash: 0,
             is_lock_agent_cust: 0,
-            is_option_open: 0,
-            is_option_open_trading:0,
             bank_name: '',
             agent_number: null,
             bank_account: null,
@@ -222,8 +202,6 @@
             cost_type_changed: false,
           };
         }
-        basic.is_option_open = Boolean(basic.is_option_open);
-        basic.is_option_open_trading = Boolean(basic.is_option_open_trading);
         return basic;
       },
       parent_agent_name: function () {
@@ -257,16 +235,7 @@
           }
         });
       },
-        switchChange() {
-            if (!Boolean(this.basic.is_option_open)) {
-                this.basic.is_option_open_trading = false
-            }
-        },
-        switchChange1() {
-            if (Boolean(this.basic.is_option_open_trading)) {
-                this.basic.is_option_open = true
-            }
-        }
+
     },
     created() {
       this.fetchCapitalPoolsList();

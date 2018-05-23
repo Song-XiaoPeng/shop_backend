@@ -33,7 +33,7 @@ export default {
       this.$notify({
         title: code,
         message: httpStatusCodeToMessage(code),
-        type: 'error',
+        type: 'warning',
       });
     };
     Vue.filter('round', function (value, param) {

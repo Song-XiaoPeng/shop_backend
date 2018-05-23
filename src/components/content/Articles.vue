@@ -67,7 +67,7 @@
                 <el-table-column label="操作" min-width="150px">
                     <template slot-scope="scope">
                         <el-button size="mini" @click="handleEdit(scope.row.id)" title="代理修改"><i class="fa fa-pencil"></i></el-button>
-                        <el-button size="small" @click="destroy(scope.row.id,scope.$index)" title="删除" icon="delete"></el-button>
+                        <el-button size="small" @click="destroy(scope.row.id,scope.$index)" title="删除" icon="el-icon-delete"></el-button>
                     </template>
                 </el-table-column>
             </el-table>

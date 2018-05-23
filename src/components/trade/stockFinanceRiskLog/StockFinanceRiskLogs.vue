@@ -51,7 +51,7 @@
       <el-table-column v-if="role_group=='System'" prop="remark" label="风控详情" show-overflow-tooltip min-width="150px"></el-table-column>
 
       <el-table-column label="操作">
-        <template scope="scope">
+        <template slot-scope="scope">
           <router-link :to="{path:'/stock/uStockFinancings/'+scope.row.stock_finance_id}">
             交易查询
           </router-link>

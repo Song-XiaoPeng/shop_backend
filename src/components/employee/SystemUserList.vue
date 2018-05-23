@@ -25,7 +25,7 @@
 
 
         <el-table-column label="状态">
-          <template scope="scope">
+          <template slot-scope="scope">
             <span v-text="calculateEmployStatus(scope.row)"></span>
           </template>
         </el-table-column>
@@ -35,8 +35,8 @@
         <el-table-column prop="remark" label="备注">
         </el-table-column>
         <el-table-column label="操作">
-          <template scope="scope">
-            <el-button v-if="role=='SystemAdmin'" size="mini" @click="handleEditEmployee(scope.row)" icon="edit" title="后台用户修改"></el-button>
+          <template slot-scope="scope">
+            <el-button v-if="role=='SystemAdmin'" size="mini" type="" @click="handleEditEmployee(scope.row)" icon="el-icon-edit" title="后台用户修改"></el-button>
           </template>
         </el-table-column>
       </el-table>

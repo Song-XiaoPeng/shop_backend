@@ -60,7 +60,7 @@
       <el-table-column v-if="role_group=='System'" prop="makedeal_ids" label="成交编号" show-overflow-tooltip></el-table-column>
 
       <el-table-column label="操作">
-        <template scope="scope">
+        <template slot-scope="scope">
           <a href="javascript:void(0);" @click="openAssign(scope.row)">系统补买</a>
         </template>
       </el-table-column>

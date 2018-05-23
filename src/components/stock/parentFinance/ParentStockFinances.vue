@@ -55,26 +55,26 @@
       <el-table-column prop="current_total_capital" label="母账户总资金" show-overflow-tooltip></el-table-column>
       <el-table-column prop="securities_account_market_value" label="持仓市值" show-overflow-tooltip></el-table-column>
       <el-table-column label="可用余额" show-overflow-tooltip>
-        <template scope="scope">
+        <template slot-scope="scope">
           {{formatNum(scope.row.available_capital)}}
         </template>
       </el-table-column>
       <el-table-column prop="freezn_capital" label="冻结资金" show-overflow-tooltip></el-table-column>
       <el-table-column prop="securities_account_remain" label="证券账户余额" show-overflow-tooltip></el-table-column>
       <el-table-column label="证券账户可用余额" show-overflow-tooltip min-width="100px">
-        <template scope="scope">
+        <template slot-scope="scope">
           {{formatNum(scope.row.securities_account_available_remain)}}
         </template>
       </el-table-column>
       <el-table-column label="登录状态" show-overflow-tooltip>
-        <template scope="scope">
+        <template slot-scope="scope">
           <span v-if="scope.row.new_login_status == '未登录'" style="color: red">{{scope.row.new_login_status}}</span>
           <span v-else >{{scope.row.new_login_status}}</span>
         </template>
       </el-table-column>
 
       <el-table-column label="操作" v-if="role=='SystemAdmin'">
-        <template scope="scope">
+        <template slot-scope="scope">
           <router-link :to="{path:'/stock/parentStockFinance/edit/'+scope.row.id}">
             修改
           </router-link>

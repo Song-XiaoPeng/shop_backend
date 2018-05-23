@@ -66,7 +66,7 @@
         let id = this.$route.params.id;
         getAgentInfo({id}).then(res => {
           this.allInfo = res.data;
-            console.log(res.data.basic.is_independent > 0)
+            console.log(res.data)
           this.isShowExtro = res.data.basic.is_independent > 0;
           this.loading = false;
           this.agentInfo = res.data.info;

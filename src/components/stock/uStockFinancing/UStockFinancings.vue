@@ -68,12 +68,12 @@
       <el-table-column label="净资产" prop="stock_finance.netAsserts" show-overflow-tooltip min-width="60px"></el-table-column>
       <el-table-column label="证券市值" prop="stock_finance.stockFinanceMarketValue" show-overflow-tooltip></el-table-column>
       <el-table-column label="盈亏额" show-overflow-tooltip>
-        <template scope="scope">
+        <template slot-scope="scope">
           <span :style="{color:(scope.row.stock_finance.winLoss<0?'red':'black')}">{{scope.row.stock_finance.winLoss}}</span>
         </template>
       </el-table-column>
       <el-table-column label="操作">
-        <template scope="scope">
+        <template slot-scope="scope">
           <router-link :to="{path:'/stock/uStockFinancings/'+scope.row.id}">
             交易查询
           </router-link>
