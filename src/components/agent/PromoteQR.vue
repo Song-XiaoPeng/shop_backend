@@ -4,14 +4,9 @@
     <h2 class="qr-text"><span class="fa fa-gear"></span>我的推广码</h2>
     <h3 class="qr-text">PC端推广链接:{{pc}}</h3>
     <h3 class="qr-text">移动端推广链接:{{mobile}}</h3>
-
     <qrcode :value="mobile" :options="{ size: 120 }"></qrcode>
-
     <h4 class="qr-text">推广码:{{code}}</h4>
-
   </section>
-
-
 </template>
 
 <script>

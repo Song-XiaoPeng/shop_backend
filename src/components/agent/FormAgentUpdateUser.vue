@@ -69,7 +69,6 @@
     computed: {
       user: function () {
           console.log(this.infoData)
-          console.log(123123123123123)
         return this.infoData.user ? this.infoData.user : {
           name: '',
           real_name: '',
@@ -82,12 +81,13 @@
     methods: {
       //修改用户密码
       submitUserForm() {
+          console.log(this.user)
         this.loading = true;
         changeAgentAdminPassword(this.user).then(res => {
           this.loading = false;
           this.ezNotifyAxiosThen(res);
           if (res.status > 0) {
-            this.$router.go(-1);
+            // this.$router.go(-1);
           }
         }).catch(error => this.ezNotifyAxiosCatch(error))
       },

@@ -10,12 +10,17 @@
     <el-form-item label="天配分成比例0~1" required prop="day_percentage">
       <el-input v-model.number="config.day_percentage"></el-input>
     </el-form-item>
+
     <el-form-item label="月配分成比例0~1" required prop="month_percentage">
       <el-input v-model.number="config.month_percentage"></el-input>
     </el-form-item>
 
     <el-form-item label="开仓费" required prop="service_charge">
       <el-input v-model.number="config.service_charge"></el-input>
+    </el-form-item>
+
+    <el-form-item label="佣金" required prop="service_charge">
+      <el-input v-model.number="config.commission_charge"></el-input>
     </el-form-item>
 
     <el-form-item>
@@ -48,6 +53,9 @@
           ],
           service_charge: [
             {required: true, message: '>0整数', trigger: 'blur', min: 0, type: 'number'}
+          ],
+          commission_charge: [
+            {required: true, message: '>0整数', trigger: 'blur', min: 0, type: 'number'}
           ]
         }
       }
@@ -60,13 +68,14 @@
           try {
             let obj = {
               parent_id: 0,
-
               day_percentage: 0,
               day_id: 0,
               month_percentage: 0,
               month_id: 0,
               service_charge: 0,
               service_charge_id: 0,
+              commission_charge_id:0,
+              commission_charge:0,
               agent_id: this.agent_id,
             }
             obj.parent_id = this.infoData.basic.parent_id;
@@ -85,6 +94,10 @@
                 obj.service_charge = currentValue.amount;
                 obj.service_charge_id = currentValue.id;
               }
+              if (currentValue.type == 3) {
+                obj.commission_charge = currentValue.amount;
+                obj.commission_charge_id = currentValue.id;
+              }
             })
             return obj
           } catch (e) {
@@ -96,6 +109,8 @@
               month_id: 0,
               service_charge: 0,
               service_charge_id: 0,
+              commission_charge_id:0,
+              commission_charge:0,
               agent_id: 0,
             }
           }

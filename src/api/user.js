@@ -10,7 +10,6 @@ export const requestLogin = params => {
     return initAxios().post(`/oauth/token`, params).then(res => res.data);
 };
 
-
 //根据token 获取用户信息
 //同事保存保存数据到storage里面去
 export const storeUserInfo = (params) => {

@@ -49,8 +49,8 @@
       <el-input v-model.number="form.month_percentage"></el-input>
     </el-form-item>
 
-    <el-form-item label="返佣提成比例" required prop="service_charge" v-if="role=='AgentAdmin'">
-      <el-input v-model.number="form.commission_percentage"></el-input>
+    <el-form-item label="开仓提成费" required prop="service_recharge" v-if="role=='AgentAdmin'">
+      <el-input v-model.number="form.service_recharge"></el-input>
     </el-form-item>
 
     <el-form-item label="备注" prop="remark">
@@ -183,12 +183,12 @@
             }
 
           ],
-          commission_percentage: [
+          service_recharge: [
             {
               min: 0,
               max: 100,
               type: 'number',
-              message: '比例在0~1之间',
+              message: '大于0整数',
               trigger: 'blur'
             }
 
@@ -208,17 +208,17 @@
         //console.log(info)
         info.day_percentage = 0;
         info.month_percentage = 0;
-        info.commission_percentage = 0;
+        info.service_recharge = 0;
         if (info.percentages.length > 0) {
           info.percentages.forEach((currentValue, index) => {
             if (currentValue.type == 0) {
-              info.day_percentage = currentValue.percentage;
+              info.day_percentage = currentValue.amount;
             }
             if (currentValue.type == 1) {
-              info.month_percentage = currentValue.percentage;
+              info.month_percentage = currentValue.amount;
             }
             if (currentValue.type == 2) {
-              info.commission_percentage = currentValue.percentage;
+              info.service_recharge = currentValue.amount;
             }
           })
         }

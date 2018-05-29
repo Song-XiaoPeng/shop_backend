@@ -48,9 +48,10 @@
                             trigger="click"
                             @show="show_phone_no(scope.row)">
                         <p>手机：{{ scope.row.full_phone_no }}</p>
+                        <a style="text-decoration:underline;cursor:pointer"
+                           slot="reference">{{scope.row.cellphone}}</a>
                     </el-popover>
-                    <a style="text-decoration:underline;cursor:pointer"
-                       v-popover:popover2>{{scope.row.cellphone}}</a>
+
                 </template>
             </el-table-column>
             <el-table-column prop="nick_name" label="昵称">
@@ -72,9 +73,9 @@
                             @show="show_agent_info(scope.row)">
                         <p>代理商编号：{{scope.row.agent_number}}</p>
                         <p>代理商名称：{{scope.row.agent_name}}</p>
+                        <a style="text-decoration:underline;cursor:pointer;"
+                           slot="reference">{{scope.row.direct_agent_id}}</a>
                     </el-popover>
-                    <a style="text-decoration:underline;cursor:pointer"
-                       v-popover:popover1>{{scope.row.direct_agent_id}}</a>
                 </template>
             </el-table-column>
             <el-table-column prop="direct_emp_id" label="员工ID">
@@ -182,6 +183,7 @@
 
         methods: {
             show_phone_no: function(row) {
+                if(row.full_phone_no) return
                 this.loading = true;
                 getCustomerPhone({id: row.id}).then(res => {
                     this.loading = false;
@@ -202,11 +204,11 @@
                 this.fetchClientList();
             },
             show_agent_info: function (row) {
+                if(row.agent_name) return
                 let id = row.direct_agent_id;
                 this.loading = true;
                 getAgentInfo({id}).then(res => {
                     this.loading = false;
-                    console.log(res)
                     let agent_info = res.data.basic;
                     row.agent_number = agent_info.agent_number;
                     row.agent_name = agent_info.agent_name;

@@ -50,8 +50,8 @@
       <el-input v-model.number="form.month_percentage"></el-input>
     </el-form-item>
 
-    <el-form-item label="返佣提成比例" required prop="commission_percentage" v-if="role=='AgentAdmin'">
-      <el-input v-model.number="form.commission_percentage"></el-input>
+    <el-form-item label="开仓提成" required prop="service_recharge" v-if="role=='AgentAdmin'">
+      <el-input v-model.number="form.service_recharge"></el-input>
     </el-form-item>
 
     <el-form-item label="备注" prop="remark">
@@ -112,7 +112,7 @@
           confirm_password: '',
           day_percentage: 0,
           month_percentage: 0,
-          commission_percentage: 0,
+          service_recharge: 0,
           remark: '',
         },
 
@@ -199,12 +199,11 @@
             },
 
           ],
-          commission_percentage: [
+          service_recharge: [
             {
               min: 0,
-              max: 1,
               type: 'number',
-              message: '比例在0~1之间',
+              message: '大于0整数',
               trigger: 'blur',
             },
 

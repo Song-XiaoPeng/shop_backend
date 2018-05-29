@@ -87,13 +87,13 @@
     </el-form-item>
 
 
-    <!--<el-form-item label="天配递延费提成" required prop="day_percentage">-->
-      <!--<el-input v-model.number="form.day_percentage"></el-input>-->
-    <!--</el-form-item>-->
+    <el-form-item label="天配递延费提成" required prop="day_percentage">
+      <el-input v-model.number="form.day_percentage"></el-input>
+    </el-form-item>
 
-    <!--<el-form-item label="月配提成比例" required prop="month_percentage">-->
-      <!--<el-input v-model.number="form.month_percentage"></el-input>-->
-    <!--</el-form-item>-->
+    <el-form-item label="月配提成比例" required prop="month_percentage">
+      <el-input v-model.number="form.month_percentage"></el-input>
+    </el-form-item>
 
     <el-form-item label="开仓费" required prop="service_charge">
       <el-input v-model.number="form.service_charge"></el-input>

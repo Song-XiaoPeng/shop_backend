@@ -10,7 +10,7 @@
     <template v-for="(form,index) in forms">
       <el-form-item :label="form.remark">
         <template v-if="form.param_type==1">
-          <el-input size="small" style="width:200px" v-model="forms[index].param_value"></el-input>
+          <el-input size="small" style="" v-model="forms[index].param_value"></el-input>
         </template>
         <template v-else-if="form.param_type==2">
           <el-switch on-text="" off-text="" v-model="forms[index].param_value" on-value="1" off-value="0"></el-switch>
@@ -22,9 +22,9 @@
     </template>
 
     <el-form-item>
-      <!--<el-button size="small" type="primary">
-          修改(暂不支持)
-      </el-button>-->
+      <el-button size="small" type="primary" @click.native="onSubmit">
+          修改(部分可修改)
+      </el-button>
       <el-button size="small" @click.native.prevent="refresh=false;$router.go(-1)">返回</el-button>
     </el-form-item>
   </el-form>
@@ -55,11 +55,11 @@
     },
     methods: {
       onSubmit() {
-        /*this.loading = true;
+        this.loading = true;
          updateSystemParam(this.forms).then(res => {
          this.ezNotifyAxiosThen(res);
          this.loading = false;
-         }).catch(error => this.ezNotifyAxiosCatch(error))*/
+         }).catch(error => this.ezNotifyAxiosCatch(error))
       }
     }
   }

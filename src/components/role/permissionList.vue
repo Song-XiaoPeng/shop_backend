@@ -17,8 +17,8 @@
             <el-table-column prop="id" label="ID" align="left">
                 <template slot-scope="scope">
                 <span v-if="scope.row._level" v-for="n in scope.row._level">&nbsp;&nbsp;.&nbsp;&nbsp;&nbsp;</span>
-                <i v-if="scope.row._expanded===0 && !scope.row._nomore" class="fa fa-plus-square fa-lg" @click="showChildren(scope)"></i>
-                <i v-else-if="scope.row._expanded===1 && !scope.row._nomore" class="fa fa-minus-square fa-lg" @click="hideChildren(scope.row)"></i>
+                <i v-if="scope.row._expanded===0 && !scope.row._nomore"  style="cursor: pointer" class="fa fa-plus-square fa-lg" @click="showChildren(scope)"></i>
+                <i v-else-if="scope.row._expanded===1 && !scope.row._nomore"  style="cursor: pointer" class="fa fa-minus-square fa-lg" @click="hideChildren(scope.row)"></i>
                 <span v-else-if="scope.row._nomore===1">&nbsp;.&nbsp;</span>
                 {{ scope.row.id }}
                 </template>

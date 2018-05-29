@@ -53,7 +53,7 @@
         </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
-            <el-button v-if="role=='AgentAdmin'" size="mini" @click="handleEditEmployee(scope.row)" icon="edit" title="员工修改"></el-button>
+            <el-button v-if="role=='AgentAdmin'" size="mini" @click="handleEditEmployee(scope.row)" icon="el-icon-edit" title="员工修改"></el-button>
             <el-button size="mini" @click="handlePlayEmployee(scope.row)" title="扮演员工"><i class="fa fa-play-circle"></i></el-button>
           </template>
         </el-table-column>

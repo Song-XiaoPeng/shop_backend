@@ -84,3 +84,4 @@ export const getAgentInterestList = params => {
 export const getAgentCapitalPoolListWithInfo = params => {
   return initAxios().post(`/v1/agentCapitalPoolListWithInfo`, params).then(res => res.data);
 };
+
