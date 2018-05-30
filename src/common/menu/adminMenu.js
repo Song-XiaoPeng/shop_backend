@@ -7,38 +7,7 @@ export const adminMenu = [
     children: [
       {path: '/system/user', name: '后台用户'},
       {path: '/system', name: '系统配置'},
-      {path: '/system/holidayMaintains', name: '节假日'},
-      {path: '/system/infos', name: '股票代码'},
       {path: '/system/financeProducts', name: '产品管理'},
-      {path: '/system/fees', name: '收费标准'},
-      {path: '/system/transRistControlRules', name: '风控标准'},
-    ],
-  },
-  {
-    path: '/cms',
-    name: '内容管理',
-    iconClass: 'fa fa-book',
-    children: [
-      {path: '/content/protocols', name: '协议管理'},
-      {path: '/content/helps', name: '帮助管理'},
-      {path: '/content/articles', name: '文章管理'},
-      /*{path: '/content/wechats', name: '微信公众号管理'},*/
-      {path: '/content/others', name: '其他管理'},
-    ]
-  },
-  {
-    path: '/agent',
-    name: '代理管理',
-    iconClass: 'fa fa-bank',
-    children: [
-      {
-        path: '/agent',
-        name: '代理列表',
-      },
-      {
-        path: '/agent/cash',
-        name: '提现记录',
-      },
     ],
   },
   {
@@ -52,20 +21,6 @@ export const adminMenu = [
       {path: '/client/withdraw', name: '客户提现'},
       {path: '/client/bankCard', name: '银行卡管理'},
       {path: '/client/message', name: '短信管理'},
-    ],
-  },
-  {
-    path: '/stock',
-    name: '配资管理',
-    iconClass: 'fa fa-btc',
-    children: [
-      {path: '/stock/uStockFinancings', name: '操盘账户'},
-      {path: '/stock/uStockFinancingRisks', name: '风控管理'},
-      {path: '/stock/uStockFinancingLogs', name: '配资记录'},
-      {path: '/stock/uStockFinanceInterestPercentages', name: '配资付息'},
-      {path: '/stock/capitalPools', name: '资金池管理'},
-      {path: '/stock/parentStockFinances', name: '操盘母账户管理'},
-      {path: '/stock/xrDrInfos', name: '除权降息管理'},
     ],
   },
   {
@@ -99,41 +54,5 @@ export const adminMenu = [
       /*{path: '/report/employeeDay', name: '员工日报表'},
        {path: '/report/employeeFull', name: '员工累计报表'},*/
     ],
-  },
-  /*{
-    path: '/option',
-    name: '期权管理',
-    iconClass: 'fa fa-ticket',
-    children: [
-      {path: '/option/optionConfigs', name: '账号登录及设置'},
-      {path: '/option/optionChildAccount', name: '期权客户账户'},
-      {path: '/option/optionChildHold', name: '权利仓查询'},
-      {path: '/option/optionInterest', name: '期权付息'},
-      {path: '/option/optionFee', name: '期权佣金'},
-      {path: '/option/optionProductApply', name: '产品申请'}
-    ],
-  },*/
-  {
-    path: '/options',
-    name: '期权管理',
-    iconClass: 'fa fa-ticket',
-    children: [
-      {path: '/options/optionsClient', name: '期权账户'},
-      {path: '/options/optionsEntrust/buy', name: '委托'},
-      {path: '/options/optionsEntrustSuccess/buy', name: '成交'},
-      {path: '/options/optionsHold', name: '持仓'},
-      {path: '/options/optionsMessage', name: '短信'},
-      {path: '/options/optionsServiceFee', name: '管理费'},
-      {path: '/options/optionsForm', name: '统计报表'},
-    ],
-  },
-  {
-    path: '/roles',
-    name: '角色管理',
-      iconClass: 'fa fa-ticket',
-      children: [
-        {path: '/roles/RoleList', name: '角色列表'},
-        // {path: '/roles/roleCreate', name: '角色管理'},
-      ],
-  },
+  }
 ];

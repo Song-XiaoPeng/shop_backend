@@ -3,6 +3,6 @@ let config = {
     STAFFHOST: 'staff',
     HOMEHOST: 'www',
     MOBILEHOST: 'm',
-    // ADMINAPIHOST: 'http://591.com'
+    ADMINAPIHOST: 'http://s_s_backend_api.com'
 };
 export default config;
